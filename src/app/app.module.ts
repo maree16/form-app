@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { ConfirmEqualValidatorDirective } from './directive/confirm-matching-validator';
 import { OnlynumberDirective } from './directive/onlynumberDirective';
 
-
 @NgModule({
   declarations: [
     AppComponent,

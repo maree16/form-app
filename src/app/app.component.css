@@ -27,6 +27,9 @@ h4 {
     color: #32325D;
 
 }
+fieldset{
+    display: contents;
+}
 
 .fa-address-book{
     font-size: 35px;
@@ -111,6 +114,7 @@ font-weight: bold;
 }
 .col-group-4{
     width: 31%;
+
 }
 .col-group-4 > input, .col-group-4 > select{
     margin: 8px 0 2px 0;
@@ -137,11 +141,22 @@ font-weight: bold;
 
 }
 
-.col-group-3 > input[value=female] {
-    margin-left: 20px;
+.gender-group{
+    display: flex;
+    justify-content: flex-start;
+
+}
+.gender-group >input[type=radio]{
+    margin-right: 30px;
+    margin-top: 26px;
+    
 }
 
-
+.gender-group >label{
+    margin-right: 10px;
+    margin-top: 26px;
+    
+}
 
 #buttonDiv{
     width: 100%;
@@ -171,7 +186,7 @@ font-weight: bold;
     width: auto ;
 
 }
-input:invalid {
-    border: 1px solid red;
 
+select:disabled{
+   background-color: #EBEBE4;
 }

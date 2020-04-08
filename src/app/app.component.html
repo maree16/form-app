@@ -1,235 +1,255 @@
-<div *ngIf="!name; else forminfo">
-  
-    <!--   creating a container div  -->
-    <section id="container-div">
-      <h4>
-          <i class="fas fa-address-book"></i> Customer Signup
-      </h4>
+    <div *ngIf="!name; else forminfo">
+    
+        <!--   creating a container div  -->
+        <section id="container-div">
+        <h4>
+            <i class="fas fa-address-book"></i> Customer Signup
+        </h4>
 
-      <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+        <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    
+            <div id="formDiv">
 
-        <div id="formDiv">
-                    <div id="rowForm">
-                
-                        <div class="form-group">
+                <div id="rowForm">
                     
-                            <label for="emailAdd">Email Address</label><br />
-                    
-                            <input type="email" placeholder="Enter Email Address" id="emailAddress" formControlName="emailAddress" (change)="rForm.controls['conemailAddress'].updateValueAndValidity()" />
-                            
-                            <div *ngIf=" rForm.controls['emailAddress'].errors">
-       
-                                <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].touched || rForm.controls['emailAddress'].dirty) && rForm.controls['emailAddress'].errors.required " >{{ titleAlert }}</small>
-                                <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].errors.pattern || rForm.controls['emailAddress'].errors.email)">Email must be a valid email address</small>
-                            </div>
-                    
-                        </div>
-
-                        <div class="form-group col-group-1">
-                            
-                            <label for="conemailAdd">Confirm Email Address</label><br />
-
-                            <input type="text"  placeholder="Confirm Email Address" name="conemailAddress" formControlName="conemailAddress" appConfirmEqualValidator="emailAddress" required/>         
-                            
-                            <div *ngIf="rForm.controls['conemailAddress'].errors"> 
-       
-                                <small id="emailErr" class="classmail" *ngIf="(rForm.controls['conemailAddress'].touched || rForm.controls['conemailAddress'].dirty) && rForm.controls['conemailAddress'].errors.required" >{{ titleAlert }}</small>
-                                <small id="emailErr" class="classmail" *ngIf="rForm.controls['conemailAddress'].touched && rForm.controls['conemailAddress'].errors.NotEqual && !rForm.controls['conemailAddress'].errors.required">Confirm Email Not Matched</small>
-           
-                            </div>
-                        </div>
-
-                    </div>    
-
-                    <div id="rowForm">
-
                             <div class="form-group">
-                                <label for="phoneNo">Phone No.</label><br />
-        
-                                   <input type="text" maxlength="11"   formControlName="phoneNo" (change)="rForm.controls['conphoneNo'].updateValueAndValidity()" numeric oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-        
-                                       <div *ngIf="rForm.controls['phoneNo'].errors">
-       
-                                            <small id="phoneErr" class="classmail" *ngIf="(rForm.controls['phoneNo'].touched || rForm.controls['phoneNo'].dirty) && rForm.controls['phoneNo'].errors.required">{{ titleAlert }}</small>
-                                            <small id="phoneErr" class="classmail" *ngIf="!rForm.controls['phoneNo'].errors.required && rForm.controls['phoneNo'].errors.NotZero">Invalid Number .Phone Number Must start from 0</small>
-                                            <small id="phoneErr" class="classmail" *ngIf="!rForm.controls['phoneNo'].errors.required && rForm.controls['phoneNo'].errors.minLength">Phone Number should Be 11 charactors Long</small>
-                                  
-                                        </div>
-                            </div>
-                           
-                            <div class="form-group">
-                                <label for="phoneAddCon">Confirm Ph. No.</label>
+                        
+                                <label for="emailAdd">Email Address</label><br />
+                        
+                                <input type="email" placeholder="Enter Email Address"  formControlName="emailAddress" (keyup)="doSomething()"  (change)="rForm.controls['conemailAddress'].updateValueAndValidity()" />
                               
-                                   <input type="text" maxlength="11"  formControlName="conphoneNo" appConfirmEqualValidator="phoneNo" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />         
-                               
-                                        <div *ngIf="rForm.controls['conphoneNo'].errors"> 
-       
-                                            <small id="emailErr" class="classmail" *ngIf="(rForm.controls['conphoneNo'].touched || rForm.controls['conphoneNo'].dirty) && rForm.controls['conphoneNo'].errors.required" >{{ titleAlert }}</small>
-                                            <small id="emailErr" class="classmail" *ngIf="rForm.controls['conphoneNo'].touched && rForm.controls['conphoneNo'].errors.NotEqual && !rForm.controls['conphoneNo'].errors.required">Confirm PhoneNo Not Matched</small>
-                                        </div>
+                                <div *ngIf="rForm.controls['emailAddress'].errors">
+                                   
+                                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].touched || rForm.controls['emailAddress'].dirty) && rForm.controls['emailAddress'].errors.required " >{{ titleAlert }}</small>
+                                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].errors.pattern || rForm.controls['emailAddress'].errors.email)">Email is not valid.</small>
+                                </div>
+                        
                             </div>
+    <fieldset [disabled]="isDisabled">
+                            <div class="form-group col-group-1">
+                                
+                                <label for="conemailAdd">Confirm Email Address</label><br />
+
+                                <input type="email"  placeholder="Confirm Email Address" name="conemailAddress" formControlName="conemailAddress" appConfirmEqualValidator="emailAddress" required/>         
+                                
+                                <div *ngIf="rForm.controls['conemailAddress'].errors"> 
+        
+                                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['conemailAddress'].touched || rForm.controls['conemailAddress'].dirty) && rForm.controls['conemailAddress'].errors.required" >{{ titleAlert }}</small>
+                                    <small id="emailErr" class="classmail" *ngIf="rForm.controls['conemailAddress'].touched && rForm.controls['conemailAddress'].errors.NotEqual && !rForm.controls['conemailAddress'].errors.required">Confirm Email Not Matched</small>
+            
+                                </div>
+                            </div>
+                        </fieldset>
+                        </div>    
+
+                        <fieldset [disabled]="isDisabled">
+
+                        <div id="rowForm">
+
+                                <div class="form-group">
+                                    <label for="phoneNo">Phone No.</label><br />
+            
+                                    <input type="text" maxlength="11" placeholder="Enter Phone Number"  formControlName="phoneNo" (change)="rForm.controls['conphoneNo'].updateValueAndValidity()" numeric oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+            
+                                        <div *ngIf="rForm.controls['phoneNo'].errors">
+                                        
+                                                <small id="phoneErr" class="classmail" *ngIf="(rForm.controls['phoneNo'].touched || rForm.controls['phoneNo'].dirty) && rForm.controls['phoneNo'].errors.required">{{ titleAlert }}</small>
+                                                <small id="phoneErr" class="classmail" *ngIf="!rForm.controls['phoneNo'].errors.required && rForm.controls['phoneNo'].errors.NotZero">Invalid Number. Phone Number Must start from 0</small>
+                                                <small id="phoneErr" class="classmail" *ngIf="!rForm.controls['phoneNo'].errors.required && rForm.controls['phoneNo'].errors.minLength">Phone Number should Be 11 charactors Long</small>
+                                    
+                                            </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label for="phoneAddCon">Confirm Ph. No.</label>
+                                
+                                    <input type="text" maxlength="11" placeholder="Confirm Phone Number"  formControlName="conphoneNo" appConfirmEqualValidator="phoneNo" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />         
+                                
+                                            <div *ngIf="rForm.controls['conphoneNo'].errors"> 
+        
+                                                <small id="emailErr" class="classmail" *ngIf="(rForm.controls['conphoneNo'].touched || rForm.controls['conphoneNo'].dirty) && rForm.controls['conphoneNo'].errors.required" >{{ titleAlert }}</small>
+                                                <small id="emailErr" class="classmail" *ngIf="rForm.controls['conphoneNo'].touched && rForm.controls['conphoneNo'].errors.NotEqual && !rForm.controls['conphoneNo'].errors.required">Confirm Phone Number Not Matched</small>
+                                            </div>
+                                </div>
+                        </div>
+                        <div id="navy-hr">
+                            <hr />
                     </div>
+    
+
+                        <div id="rowForm">
+
+                                <div class="col-group-2 star-col">
+                                    <label for="title">Title</label>
+                
+                                    <select id="titles" formControlName="titles" name="title" (change)=genderSelect($event.target.value)>
+                                        <option *ngFor="let ti of titles;" [value]="ti.id" >
+                                        {{ ti.name }}
+                                    </option>
+                                    
+                                    </select>
+        
+                                    <div *ngIf="rForm.controls['titles'].errors"> 
+        
+                                        <small id="emailErr" class="classmail" *ngIf="(rForm.controls['titles'].touched || rForm.controls['titles'].dirty) && rForm.controls['titles'].errors.required" >{{ titleAlert }}</small>
+                                    </div>
+                        </div>
+        
+
+                                <div class="col-group-2 star-col">
+                                    <label for="nameFirst">First Name</label>
+
+                                    <input type="text" placeholder="Enter First Name" id="firstName"  formControlName="name" />
+                                                                 <div *ngIf="rForm.controls['name'].errors"> 
+       
+                                        <small id="firstNameErr" class="classmail"  *ngIf="(rForm.controls['name'].touched || rForm.controls['name'].dirty) && rForm.controls['name'].errors.required">{{ titleAlert }}</small>
+                    </div>
+                                                </div>
+        
+                                <div class="col-group-2">
+                                    <label for="nameMiddle">Middle Name</label>
+                                    <br />
+            
+                                    <input type="text" placeholder="Enter Middle Name"  />
+                                </div>
+            
+                                <div class="col-group-2 star-col">
+                                    <label for="nameLast">Last Name</label>
+                                    <br />
+            
+                                    <input type="text" placeholder="Enter Last Name" formControlName="lastName" />
+                                    <br />
+                                                                 <div *ngIf="rForm.controls['lastName'].errors"> 
+       
+                                    <small id="firstNameErr" class="classmail"  *ngIf="(rForm.controls['lastName'].touched || rForm.controls['lastName'].dirty) && rForm.controls['lastName'].errors.required">{{ titleAlert }}</small>
+                                                                    </div>
+                                </div>
+                        </div>         
                     <div id="navy-hr">
                         <hr />
-                  </div>
-   
-
+                    </div>
                     <div id="rowForm">
-
-                            <div class="col-group-2 star-col">
-                                <label for="title">Title</label>
-            
-                                <select id="titles" formControlName="titles" name="title" >
-                                    <option *ngFor="let ti of titles;" [value]="ti.id" >
-                                    {{ ti.name }}
-                                  </option>
-                                
-                                </select>
-    
-                                <div *ngIf="rForm.controls['titles'].errors"> 
+                        <div class="form-group">
+                            <label for="DOB">D.O.B</label>
+                        
+                                <input type="date" placeholder="Select Date" class="textbox-n" formControlName="date"  min="1950-1-1" max="2010-1-1">
+                                <div *ngIf="rForm.controls['date'].errors"> 
        
-                                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['conphoneNo'].touched || rForm.controls['conphoneNo'].dirty) && rForm.controls['titles'].errors.required" >{{ titleAlert }}</small>
-                                </div>
-                    </div>
-    
-
-                            <div class="col-group-2 star-col">
-                                <label for="nameFirst">First Name</label>
-
-                                  <input type="text" placeholder="Enter First Name" id="firstName"  formControlName="name" />
-            
-                                      <small id="firstNameErr" class="classmail"  *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched ">{{ titleAlert }}</small>
-                  
-                             </div>
-       
-                             <div class="col-group-2">
-                                <label for="nameMiddle">Middle Name</label>
-                                <br />
-        
-                                <input type="text" placeholder="Enter Middle Name"  />
+                                <small class="classmail"  *ngIf="(rForm.controls['date'].touched || rForm.controls['date'].dirty) && rForm.controls['date'].errors.required">{{ titleAlert }}</small>
                             </div>
-        
-                            <div class="col-group-2 star-col">
-                                <label for="nameLast">Last Name</label>
-                                <br />
-        
-                                <input type="text" placeholder="Enter Last Name" formControlName="lastName" />
-                                <br />
-        
-                                <small id="firstNameErr" class="classmail"  *ngIf="!rForm.controls['lastName'].valid && rForm.controls['lastName'].touched ">{{ titleAlert }}</small>
                             </div>
-                    </div>         
-                  <div id="navy-hr">
-                      <hr />
+                    <br />
+                    
+                    <div class="col-group-3">
+                            <label for="gender">Gender</label>
+                            <br />
+                            <div class="gender-group">
+                            <label for="Male">Male </label><input type="radio" formControlName="gender" value="male" id="gender" /> 
+                            <label for="female">Female</label> <input type="radio" formControlName="gender" value="female" id="fegender"/>
+                        </div>
+
+                        </div>
                 </div>
+                <div id="navy-hr">
+                    <hr />
+                </div>
+
+
                 <div id="rowForm">
-                     <div class="form-group">
-                        <label for="DOB">D.O.B</label>
-                    
-                            <input type="date" placeholder="Select Date" class="textbox-n" formControlName="date"  min="1950-1-1" max="2010-1-1">
-                            <small id="firstNameErr" class="classmail"  *ngIf="!rForm.controls['date'].valid && rForm.controls['date'].touched ">{{ titleAlert }}</small>
-                         
+                    <div class="col-group-4 star-col">
+                        <label for="address">Address</label>
+                        <br />
+
+                        <input type="text" placeholder="Enter Address" formControlName="address"  />
+                        <br />
+                        <div *ngIf="rForm.controls['address'].errors"> 
+       
+                        <small id="firstNameErr" class="classmail"  *ngIf="(rForm.controls['address'].touched || rForm.controls['address'].dirty) && rForm.controls['address'].errors.required">{{ titleAlert }}</small>
                         </div>
-                   <br />
-                
-                   <div class="col-group-3">
-                        <label for="gender">Gender</label>
-                         <br />
-
-                        <label for="Male"></label> <input type="radio" name="gender" value="male" id="gender" /> Male
-                    
-                         <label for="female"></label> <input type="radio" name="gender" value="female" id="fegender"/> Female
-
-
                     </div>
-            </div>
-            <div id="navy-hr">
-                <hr />
-            </div>
-
-
-            <div id="rowForm">
-                <div class="col-group-4 star-col">
-                    <label for="address">Address</label>
                     <br />
-
-                    <input type="text" placeholder="Enter Address" formControlName="address"  />
-                    <br />
-
-                    <small id="firstNameErr" class="classmail"  *ngIf="!rForm.controls['address'].valid && rForm.controls['address'].touched ">{{ titleAlert }}</small>
-                </div>
-                <br />
- 
-                <div class="col-group-4 star-col">
-                    <label for="state">State</label>
-                    <br />
-
-                    <select formControlName="states" (change)=changeCities($event.target.value) >
-                        <option *ngFor="let state of states;" [value]="state.id"  >
-                            {{ state.name }}
-                          </option>
-                        
-                        </select>
-
-                        <div *ngIf="rForm.controls['states'].errors"> 
-
-                            <small id="emailErr" class="classmail" *ngIf="(rForm.controls['states'].touched || rForm.controls['states'].dirty) && rForm.controls['states'].errors.required" >State is required</small>
-                        </div>
     
+                    <div class="col-group-4 star-col">
+                        <label for="state">State</label>
+                        <br />
+
+                        <select formControlName="states" (change)="changeCities($event.target.value)" [disabled]="isDisabled">
+                            <option *ngFor="let state of states;" [value]="state.id"  >
+                                {{ state.name }}
+                            </option>
+                            
+                            </select>
+
+                            <div *ngIf="rForm.controls['states'].errors"> 
+
+                                <small id="emailErr" class="classmail" *ngIf="(rForm.controls['states'].touched || rForm.controls['states'].dirty) && rForm.controls['states'].errors.required" >{{ titleAlert}}</small>
+                            </div>
+        
+                        <br />
+
+                    
+                    </div>
                     <br />
 
-                
-                 </div>
-                <br />
+                    <div class="col-group-4 star-col" >
+                        <label for="L.G.A">City</label> 
+                        <br /> 
 
-                 <div class="col-group-4 star-col">
-                    <label for="L.G.A">City</label> 
-                    <br /> 
+                        <select formControlName="cityControl" >
+                            <option value="">Select City</option>
+                            <option *ngFor="let city of cities; " [value]="city" > 
+                                {{ city }}  
+                            </option>
+                            
+                        </select>
+                        <br />
+                        <div *ngIf="rForm.controls['cityControl'].errors"> 
+        
+                            
+                        <small id="emailErr" class="classmail" *ngIf="(rForm.controls['cityControl'].touched || rForm.controls['cityControl'].dirty) && rForm.controls['cityControl'].errors.required" >{{ titleAlert }}</small>
 
-                    <select formControlName="cities" >
-                        <option *ngFor="let city of cities; let index of stateList" > {{ index }}
-                            {{ city }}  
-                        </option>
-                        
-                    </select>
-                    <br />
-
-                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['cities'].touched || rForm.controls['cities'].dirty) && rForm.controls['cities'].errors.required" >State is required</small>
-                </div>
- </div>
-
-            <div id="navy-hr">
-                <hr />
-            </div>
-
-                
-
-
-
-
-              <div id="rowForm">
-                  <div id="buttonDiv">
-                      <button class="buttonFormat buttonStyle" type="button">CANCEL</button>
-                      <button type="submit"  [disabled]="!rForm.valid" class="buttonFormat submitStyle" >CREATE ACCOUNT</button>
+                    </div>
                     </div>
 
-                </div>   
+                </div>
+              
+                    
+                <div id="navy-hr">
+                    <hr />
+                </div>
+            </fieldset>
 
-</div>
-
-     </form> 
-  </section>
-</div>
-
-<ng-template #forminfo>
-    <div class="form container">
-        <div class="row columns">
-            <h1>{{ name }}</h1>
-            <h1>{{ emailAddress }}</h1>
-            <h1>{{ conemailAddress }}</h1>
-            <h1>{{ phoneNo   }}</h1>
-            <h1>{{ conphoneNo }}</h1>
-
-        </div>
+          
+                <div id="rowForm">
+                    <div id="buttonDiv">
+                        <button class="buttonFormat buttonStyle" type="button">CANCEL</button>
+                        <button type="submit" (click)="markDirty()"  class="buttonFormat submitStyle" >CREATE ACCOUNT</button>
+                        </div>
+                        <!-- [disabled]="!rForm.valid" for making submission disbale -->
+                    </div>   
+              
     </div>
-</ng-template>
+
+        </form> 
+    </section>
+    </div>
+
+    <ng-template #forminfo>
+        <div class="form container">
+            <div class="row columns">
+                <h1>Your Name is {{ name }}</h1>
+                <h1>Your Email Addres is{{ emailAddress }}</h1>
+                <h1>confirm Email:- {{ conemailAddress }}</h1>
+                <h1>Phone Number:- {{ phoneNo   }}</h1>
+                <h1>confirm phone Number:- {{ conphoneNo }}</h1>
+                <h1>Title:- {{ titles }}</h1>
+                <h1>Your Date of Birth is :-{{ date }}</h1>
+            
+                <h1>Your last Name is :-{{ lastName }}</h1>
+                <h1>Your Home Address is :- {{ address }}</h1>
+                <h1>Your Are from {{ cityControl }}  {{ states.name   }}</h1>
+            
+
+            </div>
+        </div>
+    </ng-template>
