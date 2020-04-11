@@ -6,7 +6,7 @@
             <i class="fas fa-address-book"></i> Customer Signup
         </h4>
 
-        <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+        <form [formGroup]="rForm" novalidate (ngSubmit)="rForm.valid && addPost(rForm.value)">
     
             <div id="formDiv">
 
@@ -16,12 +16,12 @@
                         
                                 <label for="emailAdd">Email Address</label><br />
                         
-                                <input type="email" placeholder="Enter Email Address"  formControlName="emailAddress" (keyup)="doSomething()"  (change)="rForm.controls['conemailAddress'].updateValueAndValidity()" />
+                                <input type="email" placeholder="Enter Email Address"  formControlName="emailAddress" (input)="playDisabled()" (keyup)="doSomething()"  (change)="rForm.controls['conemailAddress'].updateValueAndValidity()" />
                               
                                 <div *ngIf="rForm.controls['emailAddress'].errors">
                                    
                                     <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].touched || rForm.controls['emailAddress'].dirty) && rForm.controls['emailAddress'].errors.required " >{{ titleAlert }}</small>
-                                    <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].errors.pattern || rForm.controls['emailAddress'].errors.email)">Email is not valid.</small>
+                                  <small id="emailErr" class="classmail" *ngIf="(rForm.controls['emailAddress'].errors.pattern || rForm.controls['emailAddress'].errors.email)">Email is not valid.</small>
                                 </div>
                         
                             </div>
